@@ -1,62 +1,11 @@
 import random
 import rich
 import datetime
-import art
-
-from art import *
 from rich import print as rprint
+from art import *
+from all_questions import *
 
-# ---------------- Classes ---------------------------- #
 
-class MultipleChoiceQuestion:
-    def __init__(self, question,a,b,c,d,answer):
-        self.question = question
-        self.a = a
-        self.b = b
-        self.c = c
-        self.d = d
-        self.answer = answer
-
-# ----------------  Variables ------------------------ #
-q1 = MultipleChoiceQuestion(
-    "What is the capital city of France?",
-    "Sydney",
-    "Baghdad",
-    "Paris",
-    "Toulouse",
-    "c"
-)
-
-q2 = MultipleChoiceQuestion(
-    "Which ocean is Samoa found in?",
-    "Atlantic Ocean",
-    "Pacific Ocean",
-    "Indian Ocean",
-    "Artic OCean",
-    "b"
-)
-
-q3 = MultipleChoiceQuestion(
-    "How many continents are there on Earth?",
-    "7",
-    "5",
-    "8",
-    "10",
-    "a"
-
-)
-
-q4 = MultipleChoiceQuestion (
-    "What is the surface layer of the earth called?",
-    "The crust",
-    "The shell",
-    "The mantle",
-    "The core",
-    "a"
-
-)
-
-question_list = [q1,q2,q3,q4]
 
 bubble_greeting = text2art("Welcome\nTo\nPython Quiz App")
 
@@ -77,12 +26,27 @@ menu_choice ="none"
 
 #--------------- functions --------------------------#
 
+def create_timestamp():
+    current_time = datetime.datetime.now()
+    timestamp = f"{current_time.day}-{current_time.month}-{current_time.year} {current_time.hour}:{current_time.minute}:{current_time.second}"
+    return timestamp
 
+#This needs to be completed    
+def play_quiz(selected_quiz):
+    randomised_quiz_list = selected_quiz.copy()
+    random.shuffle(randomised_quiz_list)
+    timestamp = create_timestamp()
+    correctly_answered = 0 
+    total_questions = len(randomised_quiz_list)
+    for question in randomised_quiz_list:
+        question.print_question()
 
-# --------------  App logic -------------------------# 
+    
+    
+
+# --------------  App logic -------------------------
 
 while menu_choice!="6":
-    #menu selection may need to be recreated as a separate function if the assignment requires us to use exceptions to handle errors.
     menu_choice = (input(selection_message))
     match menu_choice:
         case "1":
@@ -99,5 +63,4 @@ while menu_choice!="6":
             print("goodbye")
         case _:
             print("that was an invalid selection. Try again.")
-    
-
+            
