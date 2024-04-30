@@ -1,6 +1,6 @@
+from rich import print as rprint
+
 # ---------------- Classes ---------------------------- #
-#Add a method to display questions
-#Add a method to check answer based on user input  (MAYBE DONT DO THIS YET)
 class MultipleChoiceQuestion:
     def __init__(self, question,a,b,c,d,answer):
         self.question = question
@@ -19,6 +19,21 @@ class MultipleChoiceQuestion:
         print(f"C - {self.c}")
         print(f"D - {self.d}")
         print(" ")
+    
+    def answer_check(self):
+        valid_input = False
+        while not valid_input:
+            user_input = input("Enter A,B,C or D: ").lower()
+            if user_input == "a" or user_input == "b" or user_input == "c" or user_input == "d":
+                valid_input = True
+                if user_input == self.answer:
+                    return True
+                else:
+                    return False
+            else:
+                print("")
+                rprint("[yellow]Invalid Input. Try again.[/yellow]")
+                print("")
 
 
 # ----------------  Variables ------------------------ #
@@ -36,7 +51,7 @@ g2 = MultipleChoiceQuestion(
     "Atlantic Ocean",
     "Pacific Ocean",
     "Indian Ocean",
-    "Artic OCean",
+    "Arctic Ocean",
     "b"
 )
 

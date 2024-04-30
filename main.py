@@ -1,13 +1,15 @@
 import random
 import rich
 import datetime
+import time
 from rich import print as rprint
 from art import *
 from all_questions import *
 
 
-
 bubble_greeting = text2art("Welcome\nTo\nPython Quiz App")
+happy_art = art("yawning")
+sad_art = art("dislike2")
 
 selection_message = """
 Enter 1 to play quiz
@@ -31,7 +33,7 @@ def create_timestamp():
     timestamp = f"{current_time.day}-{current_time.month}-{current_time.year} {current_time.hour}:{current_time.minute}:{current_time.second}"
     return timestamp
 
-#This needs to be completed    
+#Need to add functionality to enable writing to a CSV file 
 def play_quiz(selected_quiz):
     randomised_quiz_list = selected_quiz.copy()
     random.shuffle(randomised_quiz_list)
@@ -40,6 +42,19 @@ def play_quiz(selected_quiz):
     total_questions = len(randomised_quiz_list)
     for question in randomised_quiz_list:
         question.print_question()
+        is_correct = question.answer_check()
+        if is_correct:
+            correctly_answered += 1
+            print("")
+            rprint(f"[green]That is correct! {happy_art}[/green]")
+        else:
+            print("")
+            rprint(f"[red]That is incorrect! {sad_art}[/red]")
+
+    print(f"you started this quiz on {timestamp}")
+    print(f"you correctly answered {correctly_answered} out of {total_questions} questions")
+
+
 
     
     
@@ -50,7 +65,7 @@ while menu_choice!="6":
     menu_choice = (input(selection_message))
     match menu_choice:
         case "1":
-            print("Game is playing")
+            play_quiz(geography_question_list)
         case "2":
             print("Adding a question")
         case "3":
@@ -64,3 +79,4 @@ while menu_choice!="6":
         case _:
             print("that was an invalid selection. Try again.")
             
+
