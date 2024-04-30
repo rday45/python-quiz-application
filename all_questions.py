@@ -32,7 +32,7 @@ class MultipleChoiceQuestion:
                     return False
             else:
                 print("")
-                rprint("[yellow]Invalid Input. Try again.[/yellow]")
+                rprint("[yellow]Invalid quiz input. Try again.[/yellow]")
                 print("")
 
 

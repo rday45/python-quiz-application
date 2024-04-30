@@ -35,11 +35,14 @@ def create_timestamp():
 
 #Need to add functionality to enable writing to a CSV file 
 def play_quiz(selected_quiz):
+    
     randomised_quiz_list = selected_quiz.copy()
     random.shuffle(randomised_quiz_list)
     timestamp = create_timestamp()
+    start_time = time.time()
     correctly_answered = 0 
     total_questions = len(randomised_quiz_list)
+    
     for question in randomised_quiz_list:
         question.print_question()
         is_correct = question.answer_check()
@@ -51,8 +54,12 @@ def play_quiz(selected_quiz):
             print("")
             rprint(f"[red]That is incorrect! {sad_art}[/red]")
 
+    end_time = time.time()
+    session_duration = end_time-start_time
+    rounded_duration = round(session_duration,2)
     print(f"you started this quiz on {timestamp}")
     print(f"you correctly answered {correctly_answered} out of {total_questions} questions")
+    print(f"The quiz took you {rounded_duration} seconds when rounded to two decimal points")
 
 
 
@@ -75,8 +82,8 @@ while menu_choice!="6":
         case "5":
             print("clearing play history")
         case "6":
-            print("goodbye")
+            print("Goodbye!")
         case _:
-            print("that was an invalid selection. Try again.")
+            rprint("[yellow]Invalid menu input. Try again.[/yellow]")
             
 
