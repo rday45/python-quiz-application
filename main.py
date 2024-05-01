@@ -2,6 +2,8 @@ import random
 import rich
 import datetime
 import time
+import os.path
+import csv
 from rich import print as rprint
 from art import *
 from all_questions import *
@@ -33,7 +35,12 @@ def create_timestamp():
     timestamp = f"{current_time.day}-{current_time.month}-{current_time.year} {current_time.hour}:{current_time.minute}:{current_time.second}"
     return timestamp
 
-#Need to add functionality to enable writing to a CSV file 
+def writedata(file,data1,data2,data3):
+    with open(file, "a") as f:
+        writer = csv.writer(f)
+        writer.writerow([data1,data2,data3])
+
+
 def play_quiz(selected_quiz):
     
     randomised_quiz_list = selected_quiz.copy()
@@ -56,15 +63,21 @@ def play_quiz(selected_quiz):
 
     end_time = time.time()
     session_duration = end_time-start_time
-    rounded_duration = round(session_duration,2)
-    print(f"you started this quiz on {timestamp}")
-    print(f"you correctly answered {correctly_answered} out of {total_questions} questions")
-    print(f"The quiz took you {rounded_duration} seconds when rounded to two decimal points")
+    rounded_duration = round(session_duration,1)
+    percentage_correct = (correctly_answered/total_questions)*100
+    writedata(file_name,timestamp,percentage_correct,rounded_duration)
+    rprint(f"[blue]You started this quiz on {timestamp}[/blue]")
+    rprint(f"[blue]You correctly answered {correctly_answered} out of {total_questions} questions[/blue]")
+    rprint(f"[blue]That means you got {percentage_correct}% correct[/blue]")
+    rprint(f"[blue]The quiz took you {rounded_duration} seconds[/blue]")
 
 
+file_name = "data.csv"
+if (not os.path.isfile(file_name)):
+    created_file = open(file_name, "w")
+    created_file.write("date,percentage correct,session duration\n")
+    created_file.close()
 
-    
-    
 
 # --------------  App logic -------------------------
 
