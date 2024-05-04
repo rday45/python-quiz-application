@@ -15,18 +15,12 @@ sad_art = art("dislike2")
 
 selection_message = """
 Enter 1 to play quiz
-Enter 2 to add a question
-Enter 3 to delete a question
-Enter 4 to view play history
-Enter 5 to clear play history
-Enter 6 to quit
+Enter 2 to view play history
+Enter 3 to clear play history
+Enter 4 to quit
 
 Enter a number: """
 
-
-rprint(f"[magenta]{bubble_greeting}[/magenta]") 
-
-menu_choice ="none"
 
 #--------------- functions --------------------------#
 
@@ -34,6 +28,13 @@ def create_timestamp():
     current_time = datetime.datetime.now()
     timestamp = f"{current_time.day}-{current_time.month}-{current_time.year} {current_time.hour}:{current_time.minute}:{current_time.second}"
     return timestamp
+
+def create_new_file(file):
+    created_file = open(file, "w")
+    created_file.write("date,percentage correct,session duration\n")
+    created_file.close()
+
+
 
 def writedata(file,data1,data2,data3):
     with open(file, "a") as f:
@@ -72,30 +73,32 @@ def play_quiz(selected_quiz):
     rprint(f"[blue]The quiz took you {rounded_duration} seconds[/blue]")
 
 
-file_name = "data.csv"
-if (not os.path.isfile(file_name)):
-    created_file = open(file_name, "w")
-    created_file.write("date,percentage correct,session duration\n")
-    created_file.close()
 
 
 # --------------  App logic -------------------------
 
-while menu_choice!="6":
+rprint(f"[magenta]{bubble_greeting}[/magenta]") 
+
+file_name = "data.csv"
+
+if (not os.path.isfile(file_name)):
+    create_new_file(file_name)
+
+
+menu_choice = "none"
+
+while menu_choice!="4":
     menu_choice = (input(selection_message))
     match menu_choice:
         case "1":
             play_quiz(geography_question_list)
         case "2":
-            print("Adding a question")
+            print("view play history")
         case "3":
-            print("deleting a question")
+            create_new_file(file_name)
+            rprint("[blue]Your play history has been cleared[/blue]")
         case "4":
-            print("viewing play history")
-        case "5":
-            print("clearing play history")
-        case "6":
-            print("Goodbye!")
+            print("Goodbye")   
         case _:
             rprint("[yellow]Invalid menu input. Try again.[/yellow]")
             
