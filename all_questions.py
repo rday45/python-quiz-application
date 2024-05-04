@@ -23,13 +23,15 @@ class MultipleChoiceQuestion:
     def answer_check(self):
         valid_input = False
         while not valid_input:
-            user_input = input("Enter A,B,C or D: ").lower()
-            if user_input == "a" or user_input == "b" or user_input == "c" or user_input == "d":
+            user_input = input("Enter A,B,C or D to select an answer or 5 to quit: ").lower()
+            if user_input =="5":
+                return "quit"
+            elif user_input == "a" or user_input == "b" or user_input == "c" or user_input == "d":
                 valid_input = True
                 if user_input == self.answer:
-                    return True
+                    return "correct"
                 else:
-                    return False
+                    return "incorrect"
             else:
                 print("")
                 rprint("[yellow]Invalid quiz input. Try again.[/yellow]")

@@ -57,14 +57,16 @@ def play_quiz(selected_quiz):
     
     for question in randomised_quiz_list:
         question.print_question()
-        is_correct = question.answer_check()
-        if is_correct:
+        answer_check = question.answer_check()
+        if answer_check == "correct":
             correctly_answered += 1
             print("")
             rprint(f"[green]That is correct! {happy_art}[/green]")
-        else:
+        elif answer_check =="incorrect":
             print("")
             rprint(f"[red]That is incorrect! {sad_art}[/red]")
+        else:
+            break
 
     end_time = time.time()
     session_duration = end_time-start_time
@@ -73,7 +75,7 @@ def play_quiz(selected_quiz):
     writedata(file_name,timestamp,percentage_correct,rounded_duration)
     rprint(f"[blue]You started this quiz on {timestamp}[/blue]")
     rprint(f"[blue]You correctly answered {correctly_answered} out of {total_questions} questions[/blue]")
-    rprint(f"[blue]That means you got {percentage_correct}% correct[/blue]")
+    rprint(f"[blue]That means you got {percentage_correct}% of questions correct[/blue]")
     rprint(f"[blue]The quiz took you {rounded_duration} seconds[/blue]")
 
 #This function displays the users play history as a multi column graph. Error handling occurs through exceptions if no data is present.
@@ -83,6 +85,7 @@ def display_play_history():
     session_dates = []
     percentages = []
     durations = []
+
     for col in file:
         session_dates.append(col['date'])
         percentages.append(col['percentage correct'])
