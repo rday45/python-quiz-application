@@ -1,3 +1,5 @@
+
+#imports all required packages and or libraries 
 import random
 import rich
 import datetime
@@ -25,7 +27,7 @@ Enter a number: """
 
 
 #--------------- functions --------------------------#
-
+#creates a time stamp in an easy to understand Australian format
 def create_timestamp():
     current_time = datetime.datetime.now()
     timestamp = f"{current_time.day}-{current_time.month}-{current_time.year} {current_time.hour}:{current_time.minute}:{current_time.second}"
@@ -46,7 +48,6 @@ def writedata(file,data1,data2,data3):
 
 
 def play_quiz(selected_quiz):
-    
     randomised_quiz_list = selected_quiz.copy()
     random.shuffle(randomised_quiz_list)
     timestamp = create_timestamp()
@@ -91,6 +92,7 @@ def display_play_history():
     durations_as_number = [eval(i) for i in durations]
     try:
         plotext.simple_multiple_bar(session_dates, [percentages_as_number, durations_as_number], width = 100, labels = ['% Of Answers Correct', 'Session Duration in Seconds'])
+        print("────────────────────────────────────────── Play History ────────────────────────────────────────────")
         plotext.show()
     except IndexError:
         rprint("[yellow]Cannot display play history - no data found![/yellow]")
@@ -101,10 +103,6 @@ def display_all_answers(quiz_list):
     for question in quiz_list:
         question.print_question()
         question.print_answer()
-
-
-    
-
 
 
 # --------------  App logic -------------------------

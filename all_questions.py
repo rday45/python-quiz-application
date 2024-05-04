@@ -30,8 +30,6 @@ class MultipleChoiceQuestion:
                     return True
                 else:
                     return False
-
-            
             else:
                 print("")
                 rprint("[yellow]Invalid quiz input. Try again.[/yellow]")
@@ -68,17 +66,15 @@ geo3 = MultipleChoiceQuestion(
     "8",
     "10",
     "a"
-
 )
 
-geo4 = MultipleChoiceQuestion (
+geo4 = MultipleChoiceQuestion(
     "What is the surface layer of the earth called?",
     "The crust",
     "The shell",
     "The mantle",
     "The core",
     "a"
-
 )
 geo5 = MultipleChoiceQuestion(
     "How many named oceans are found on Earth?",
@@ -97,7 +93,6 @@ his1 = MultipleChoiceQuestion(
     "Pharaoh",
     "Emperor",
     "c"
-
 )
 
 his2 = MultipleChoiceQuestion(
