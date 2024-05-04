@@ -34,6 +34,11 @@ class MultipleChoiceQuestion:
                 print("")
                 rprint("[yellow]Invalid quiz input. Try again.[/yellow]")
                 print("")
+    
+    def print_answer(self):
+        print(" ")
+        question_answer = self.answer.upper()
+        rprint(f"[green]The correct answer is: {question_answer}.")
 
 
 # ----------------  Variables ------------------------ #
