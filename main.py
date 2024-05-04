@@ -4,6 +4,7 @@ import datetime
 import time
 import os.path
 import csv
+import plotext
 from rich import print as rprint
 from art import *
 from all_questions import *
@@ -29,6 +30,7 @@ def create_timestamp():
     timestamp = f"{current_time.day}-{current_time.month}-{current_time.year} {current_time.hour}:{current_time.minute}:{current_time.second}"
     return timestamp
 
+#This function is used to create a file to store play history data at launch if one does not already exist. It's also used to clear play history data.
 def create_new_file(file):
     created_file = open(file, "w")
     created_file.write("date,percentage correct,session duration\n")
@@ -72,6 +74,30 @@ def play_quiz(selected_quiz):
     rprint(f"[blue]That means you got {percentage_correct}% correct[/blue]")
     rprint(f"[blue]The quiz took you {rounded_duration} seconds[/blue]")
 
+#This function displays the users play history as a multi column graph. Error handling occurs through exceptions if no data is present.
+def display_play_history():
+    play_history = open('data.csv','r')
+    file = csv.DictReader(play_history)
+    session_dates = []
+    percentages = []
+    durations = []
+    for col in file:
+        session_dates.append(col['date'])
+        percentages.append(col['percentage correct'])
+        durations.append(col['session duration'])
+    play_history.close()
+    percentages_as_number = [eval(i) for i in percentages]
+    durations_as_number = [eval(i) for i in durations]
+    try:
+        plotext.simple_multiple_bar(session_dates, [percentages_as_number, durations_as_number], width = 100, labels = ['% Of Answers Correct', 'Session Duration in Seconds'])
+        plotext.show()
+    except IndexError:
+        rprint("[yellow]Cannot display play history - no data found![/yellow]")
+    except:
+        rprint("[yellow]Cannot display play history - something went wrong![/yellow]")
+
+
+    
 
 
 
@@ -93,7 +119,7 @@ while menu_choice!="4":
         case "1":
             play_quiz(geography_question_list)
         case "2":
-            print("view play history")
+            display_play_history()
         case "3":
             create_new_file(file_name)
             rprint("[blue]Your play history has been cleared[/blue]")
@@ -102,4 +128,11 @@ while menu_choice!="4":
         case _:
             rprint("[yellow]Invalid menu input. Try again.[/yellow]")
             
+
+
+
+
+
+
+
 
