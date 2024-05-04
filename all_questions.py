@@ -30,19 +30,20 @@ class MultipleChoiceQuestion:
                     return True
                 else:
                     return False
+
+            
             else:
                 print("")
                 rprint("[yellow]Invalid quiz input. Try again.[/yellow]")
                 print("")
     
     def print_answer(self):
-        print(" ")
         question_answer = self.answer.upper()
         rprint(f"[green]The correct answer is: {question_answer}.")
 
 
 # ----------------  Variables ------------------------ #
-g1 = MultipleChoiceQuestion(
+geo1 = MultipleChoiceQuestion(
     "What is the capital city of France?",
     "Sydney",
     "Baghdad",
@@ -51,7 +52,7 @@ g1 = MultipleChoiceQuestion(
     "c"
 )
 
-g2 = MultipleChoiceQuestion(
+geo2 = MultipleChoiceQuestion(
     "Which ocean is Samoa found in?",
     "Atlantic Ocean",
     "Pacific Ocean",
@@ -60,7 +61,7 @@ g2 = MultipleChoiceQuestion(
     "b"
 )
 
-g3 = MultipleChoiceQuestion(
+geo3 = MultipleChoiceQuestion(
     "How many continents are there on Earth?",
     "7",
     "5",
@@ -70,7 +71,7 @@ g3 = MultipleChoiceQuestion(
 
 )
 
-g4 = MultipleChoiceQuestion (
+geo4 = MultipleChoiceQuestion (
     "What is the surface layer of the earth called?",
     "The crust",
     "The shell",
@@ -79,7 +80,7 @@ g4 = MultipleChoiceQuestion (
     "a"
 
 )
-g5 = MultipleChoiceQuestion(
+geo5 = MultipleChoiceQuestion(
     "How many named oceans are found on Earth?",
     "10",
     "4",
@@ -89,4 +90,51 @@ g5 = MultipleChoiceQuestion(
 )
 
 
-geography_question_list = [g1,g2,g3,g4,g5]
+his1 = MultipleChoiceQuestion(
+    "What title belonged to the ruler of Egypt in ancient times?",
+    "Lord",
+    "Mr",
+    "Pharaoh",
+    "Emperor",
+    "c"
+
+)
+
+his2 = MultipleChoiceQuestion(
+    "In which year did the french revolution take place?",
+    "1900",
+    "2020",
+    "1400",
+    "1789",
+    "d"
+)
+
+his3 = MultipleChoiceQuestion(
+    "Which person was a prime minister of Australia?",
+    "Paul Keating",
+    "Billy Bob",
+    "John Romero",
+    "Tony Stark",
+    "a"
+)
+
+his4 = MultipleChoiceQuestion(
+    "What year marked the start of World War 1?",
+    "1914",
+    "1980",
+    "1900",
+    "1918",
+    "a"
+)
+
+his5 = MultipleChoiceQuestion(
+    "Garum was a popular in which society?",
+    "Chinese",
+    "Egyptian",
+    "Russian",
+    "Roman",
+    "d"
+)
+
+
+humanities_quiz = [geo1,his1,geo2,his2,geo3,his3,geo4,his4,geo5,his5]

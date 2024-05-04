@@ -16,9 +16,10 @@ sad_art = art("dislike2")
 
 selection_message = """
 Enter 1 to play quiz
-Enter 2 to view play history
-Enter 3 to clear play history
-Enter 4 to quit
+Enter 2 to display all questions and answers
+Enter 3 to view play history
+Enter 4 to clear play history
+Enter 5 to quit
 
 Enter a number: """
 
@@ -96,6 +97,11 @@ def display_play_history():
     except:
         rprint("[yellow]Cannot display play history - something went wrong![/yellow]")
 
+def display_all_answers(quiz_list):
+    for question in quiz_list:
+        question.print_question()
+        question.print_answer()
+
 
     
 
@@ -113,18 +119,20 @@ if (not os.path.isfile(file_name)):
 
 menu_choice = "none"
 
-while menu_choice!="4":
+while menu_choice!="5":
     menu_choice = (input(selection_message))
     match menu_choice:
         case "1":
-            play_quiz(geography_question_list)
+            play_quiz(humanities_quiz)
         case "2":
-            display_play_history()
+            display_all_answers(humanities_quiz)
         case "3":
+            display_play_history()
+        case "4":
             create_new_file(file_name)
             rprint("[blue]Your play history has been cleared[/blue]")
-        case "4":
-            print("Goodbye")   
+        case "5":
+            print("Goodbye")
         case _:
             rprint("[yellow]Invalid menu input. Try again.[/yellow]")
             
