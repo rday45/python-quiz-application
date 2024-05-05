@@ -40,13 +40,13 @@ def create_new_file(file):
     created_file.close()
 
 
-
+#This function captures user data while the quiz is playing
 def writedata(file,data1,data2,data3):
     with open(file, "a") as f:
         writer = csv.writer(f)
         writer.writerow([data1,data2,data3])
 
-
+#This function allows users to play the quiz game
 def play_quiz(selected_quiz):
     randomised_quiz_list = selected_quiz.copy()
     random.shuffle(randomised_quiz_list)
@@ -102,6 +102,7 @@ def display_play_history():
     except:
         rprint("[yellow]Cannot display play history - something went wrong![/yellow]")
 
+#This function displays all questions and their answers
 def display_all_answers(quiz_list):
     for question in quiz_list:
         question.print_question()
@@ -110,16 +111,18 @@ def display_all_answers(quiz_list):
 
 # --------------  App logic -------------------------
 
+#greeting
 rprint(f"[magenta]{bubble_greeting}[/magenta]") 
 
 file_name = "data.csv"
 
+#creates csv file to capture data if it does not already exist
 if (not os.path.isfile(file_name)):
     create_new_file(file_name)
 
-
 menu_choice = "none"
 
+#code that runs the main menu of the application
 while menu_choice!="5":
     menu_choice = (input(selection_message))
     match menu_choice:

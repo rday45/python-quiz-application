@@ -9,7 +9,7 @@ class MultipleChoiceQuestion:
         self.c = c
         self.d = d
         self.answer = answer
-    
+    #prints the question associated with the object
     def print_question(self):
         print(" ")
         print(f"Question: {self.question}")
@@ -19,7 +19,7 @@ class MultipleChoiceQuestion:
         print(f"C - {self.c}")
         print(f"D - {self.d}")
         print(" ")
-    
+    #checks user answer and returns a value
     def answer_check(self):
         valid_input = False
         while not valid_input:
@@ -36,13 +36,13 @@ class MultipleChoiceQuestion:
                 print("")
                 rprint("[yellow]Invalid quiz input. Try again.[/yellow]")
                 print("")
-    
+    #prints both question and answer for the quiz object
     def print_answer(self):
         question_answer = self.answer.upper()
         rprint(f"[green]The correct answer is: {question_answer}.")
 
 
-# ----------------  Variables ------------------------ #
+#creates quiz objects
 geo1 = MultipleChoiceQuestion(
     "What is the capital city of France?",
     "Sydney",
@@ -133,5 +133,6 @@ his5 = MultipleChoiceQuestion(
     "d"
 )
 
+#creates list of quiz objects
 
 humanities_quiz = [geo1,his1,geo2,his2,geo3,his3,geo4,his4,geo5,his5]
